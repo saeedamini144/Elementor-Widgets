@@ -229,6 +229,14 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'title_hover',
+            [
+                'label' => esc_html__('title Hover', 'essential-elementor-widgets'),
+                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
+            ]
+        );
+
         $this->end_controls_section();
         //style tab end
     }
@@ -252,10 +260,29 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
         if (! empty($settings['title_link']['url'])) {
             $this->add_link_attributes('title_link', $settings['title_link']);
         }
+
+        if (!empty($settings['title_hover'])) {
+            $this->add_render_attribute(
+                'card_title_element', // کلید
+                'class', // نام ویژگی
+                'elementor-animation-' . $settings['title_hover'] // مقدار ویژگی
+            );
+        }
+
+        // if (!empty($settings['title_hover'])) {
+        //     $card_title .=  'elementor-animation-' . $settings['title_hover'];
+        // }
+        // $this->add_render_attribute(
+        //     'card_title_element', // کلید
+        //     'class', // نام ویژگی
+        //     'elementor-animation-' . $settings['title_hover'] // مقدار ویژگی
+        // );
+        // <?php $this->print_render_attribute_string('card_title_element') 
 ?>
         <div class="card">
-            <!-- <a <?php $this->print_render_attribute_string('title_link'); ?>>//change it to string -->
-            <h3 class="card-title"><?php echo esc_html($card_title); ?></h3>
+            <!-- change it to string -->
+            <a <?php $this->print_render_attribute_string('title_link'); ?>>
+                <h3 class="card-title" <?php $this->print_render_attribute_string('card_title_element') ?>><?php echo esc_html($card_title); ?></h3>
             </a>
             <p class="card_descriptions"><?php echo esc_html($Card_description); ?></p>
         </div>
@@ -267,7 +294,7 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
     ?>
         <div class="card">
             <a href="{{ settings.title_link.url }}">
-                <h3 class="card-title">{{ settings.card_title }}</h3>
+                <h3 class="card-title elementor-animation-{{setting.title_hover}}">{{ settings.card_title }}</h3>
             </a>
             <p class="card_descriptions">{{ settings.Card_description }}</p>
         </div>
