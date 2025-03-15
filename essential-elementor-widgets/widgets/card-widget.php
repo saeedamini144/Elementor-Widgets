@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly.security. not allowed user to directly access the widgets
 }
@@ -109,6 +112,7 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
      */
     protected function register_controls()
     {
+        //content tab start
         //contorl function code must be here
         $this->start_controls_section(
             'content_section', //the section that has the kept teh content
@@ -141,6 +145,42 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
 
         //input field control goes here
         $this->end_controls_section();
+        //content tab end
+
+        //style tab start
+        $this->start_controls_section(
+            'section_title_style',
+            [
+                'label' => esc_html__('Card Content Color', 'essential-elementor-widgets'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+
+            ]
+        );
+
+        $this->add_control(
+            'Description_color',
+            [
+                'label' => esc_html__('Card Description', 'essential-elementor-widgets'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .card_descriptions' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'title_color',
+            [
+                'label' => esc_html__('Card Title', 'essential-elementor-widgets'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .card-title' => ' color: {{VALUE}} ',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+        //style tab end
     }
 
 
