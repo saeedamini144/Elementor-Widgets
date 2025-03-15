@@ -133,6 +133,22 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'title_link',
+            [
+                'label' => esc_html__('Link title', 'essential-elementor-widgets'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'options' => ['url', 'is_external', 'nofollow'],
+                'default' => [
+                    'url' => '#',
+                    'is_external' => true,
+                    'nofollow' => true,
+                    // 'custom_attributes' => '',
+                ],
+                'label_block' => true,
+            ]
+        );
+
+        $this->add_control(
             'Card_description',
             [
                 'label' => esc_html__('Card Description', 'essential-elementor-widgets'),
@@ -193,6 +209,26 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'title_dimenstion',
+            [
+                'label' => esc_html__('Title Padding', 'essential-elementor-widgets'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .card-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
         //style tab end
     }
@@ -210,23 +246,31 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        //get the individual value of input
         $card_title = $settings['card_title'];
         $Card_description = $settings['Card_description'];
 
-        // if (empty($settings['url'])) {
-        //     return;
-        // }
-
-        // $html = wp_oembed_get($settings['url']);
-
-        //start rendering the output
+        if (! empty($settings['title_link']['url'])) {
+            $this->add_link_attributes('title_link', $settings['title_link']);
+        }
 ?>
         <div class="card">
-            <h3 class="card-title"><?php echo $card_title ?></h3>
-            <p class="card_descriptions"><?php echo $Card_description ?></p>
+            <!-- <a <?php $this->print_render_attribute_string('title_link'); ?>>//change it to string -->
+            <h3 class="card-title"><?php echo esc_html($card_title); ?></h3>
+            </a>
+            <p class="card_descriptions"><?php echo esc_html($Card_description); ?></p>
+        </div>
+    <?php
+    }
+
+    protected function content_template(): void
+    {
+    ?>
+        <div class="card">
+            <a href="{{ settings.title_link.url }}">
+                <h3 class="card-title">{{ settings.card_title }}</h3>
+            </a>
+            <p class="card_descriptions">{{ settings.Card_description }}</p>
         </div>
 <?php
-        //end rendering the output
     }
 }
