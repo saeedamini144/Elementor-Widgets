@@ -149,9 +149,9 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
 
         //style tab start
         $this->start_controls_section(
-            'section_title_style',
+            'section_description_style',
             [
-                'label' => esc_html__('Card Content Color', 'essential-elementor-widgets'),
+                'label' => esc_html__('Description Style', 'essential-elementor-widgets'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 
             ]
@@ -165,6 +165,20 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .card_descriptions' => 'color: {{VALUE}};',
                 ],
+            ]
+        );
+        $this->end_controls_section();
+        //style tab end
+
+
+        //new tab style
+
+        $this->start_controls_section(
+            'section_title_style',
+            [
+                'label' => esc_html__('Title Style', 'essential-elementor-widgets'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+
             ]
         );
 
