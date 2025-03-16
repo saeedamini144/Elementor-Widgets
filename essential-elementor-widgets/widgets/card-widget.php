@@ -17,6 +17,11 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
 {
     //the widget code must be here
 
+    public function get_style_depends()
+    {
+        return ['elementor-animations'];
+    }
+
 
     /**
      * Get widget name.
@@ -294,7 +299,7 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
     ?>
         <div class="card">
             <a href="{{ settings.title_link.url }}">
-                <h3 class="card-title elementor-animation-{{setting.title_hover}}">{{ settings.card_title }}</h3>
+                <h3 class="card-title elementor-animation-{{ settings.title_hover }}">{{ settings.card_title }}</h3>
             </a>
             <p class="card_descriptions">{{ settings.Card_description }}</p>
         </div>
