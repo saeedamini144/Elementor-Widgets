@@ -179,6 +179,15 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'title_option',
+            [
+                'label' => esc_html__('title options', 'essential-elementor-widgets'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
             'Description_color',
             [
                 'label' => esc_html__('Card Description', 'essential-elementor-widgets'),
@@ -188,6 +197,17 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'content_typography',
+                'selector' => '{{WRAPPER}} .card-title',
+            ],
+
+        );
+
+
         $this->end_controls_section();
         //style tab end
 
@@ -208,6 +228,7 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Card Title', 'essential-elementor-widgets'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'separator' => 'before',
                 'selectors' => [
                     '{{WRAPPER}} .card-title' => ' color: {{VALUE}} ',
                 ],
@@ -219,6 +240,7 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Title Padding', 'essential-elementor-widgets'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'separator' => 'before',
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'default' => [
                     'top' => 0,
@@ -239,6 +261,7 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('title Hover', 'essential-elementor-widgets'),
                 'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
+                'separator' => 'before',
             ]
         );
 
