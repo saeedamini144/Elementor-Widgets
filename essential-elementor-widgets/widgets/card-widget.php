@@ -207,6 +207,46 @@ class Essential_Elementor_Card_Widget extends \Elementor\Widget_Base
 
         );
 
+        $this->add_control(
+            'title_align',
+            [
+                'label' => esc_html__('Alignment', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'textdomain'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'textdomain'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'textdomain'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                    'justify' => [
+                        'title' => esc_html__('Justify', 'textdomain'),
+                        'icon' => 'eicon-text-align-justify',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .card-title' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        // $this->add_group_control(
+        //     \Elementor\Group_Control_Text_Stroke::get_type(),
+        //     [
+        //         'name' => 'text_stroke',
+        //         'selector' => '{{WRAPPER}} .card-title',
+        //     ]
+        // );
+
+
 
         $this->end_controls_section();
         //style tab end
