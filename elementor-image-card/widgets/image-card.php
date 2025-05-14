@@ -154,6 +154,44 @@ class Elementor_Image_Card extends \Elementor\Widget_Base
 
         // پایان بخش تنظیمات محتوا.
         $this->end_controls_section();
+
+        // شروع یک بخش جدید در پنل تنظیمات ویجت (تب Style).
+        // این بخش برای تنظیمات استایل (شامل رنگ، اندازه، فاصله و غیره) استفاده می‌شود.
+
+        $this->start_controls_section(
+            'style_section',
+            [
+                'label' => esc_html__('Style', 'elementor-image-card'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'title_color',
+            [
+                'label' => esc_html__('Title color', 'elemntor-image-color'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+
+            ]
+        );
+
+        $this->add_control(
+            'title_fonts',
+            [
+                'label' => esc_html__('Title fonts', 'elemntor-image-color'),
+                'type' => \Elementor\Controls_Manager::FONT,
+            ]
+        );
+
+        $this->add_control(
+            'description_color',
+            [
+                'label' => esc_html__('Description color', 'elemntor-image-color'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     // متد render خروجی نهایی HTML ویجت را برای نمایش در فرانت‌اند (وبسایت برای کاربران) تولید می‌کند.
