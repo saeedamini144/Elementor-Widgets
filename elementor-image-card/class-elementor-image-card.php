@@ -38,9 +38,20 @@ if (!defined('ABSPATH')) {
  * @return void
  */
 
-function register_image_card($widgets_manager)
+// function register_image_card($widgets_manager)
+// {
+//     require_once(__DIR__ . '/widgets/image-card.php');
+//     $widgets_manager->register(new \Elementor_Image_Card());
+// }
+// add_action('elementor/widgets/register', 'register_image_card');
+use Elementor\Widgets_Manager;
+
+function register_image_card(Widgets_Manager $widgets_manager)
 {
     require_once(__DIR__ . '/widgets/image-card.php');
-    $widgets_manager->register(new \Elementor_Image_Card());
+
+    if (class_exists('\Elementor_Image_Card')) {
+        $widgets_manager->register(new \Elementor_Image_Card());
+    }
 }
 add_action('elementor/widgets/register', 'register_image_card');
