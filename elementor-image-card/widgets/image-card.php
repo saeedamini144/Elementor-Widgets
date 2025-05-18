@@ -84,6 +84,30 @@ class Elementor_Image_Card extends Widget_Base
         );
 
         $this->add_control(
+            'image_border_radius',
+            [
+                'label' => esc_html__('Image Border Radius', 'elementor-image-card'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-image-card-image img' => 'border-radius: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'title_color',
             [
                 'label' => esc_html__('Title Color', 'elementor-image-card'),
